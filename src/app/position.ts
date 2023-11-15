@@ -1,6 +1,6 @@
 export interface Position {
   contractId: number;
-  date: String;
+  date: Object;
   ticker: String;
   position: number;
   unrealizedPnL: number;
