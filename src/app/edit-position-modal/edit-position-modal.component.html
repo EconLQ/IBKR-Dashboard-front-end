@@ -1,0 +1,91 @@
+<div class="modal-header">
+  <h1 class="modal-title fs-5" id="editModalLabel">
+    Edit {{ position?.ticker }} position
+  </h1>
+  <button
+    type="button"
+    class="btn-close"
+    (click)="activeModal.close()"
+  ></button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="mb-3">
+      <label for="ticker" class="col-form-label">Ticker:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="ticker"
+        value="{{ position?.ticker }}"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="date" class="col-form-label">Date:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="date"
+        value="{{ position?.date }}"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="position" class="col-form-label">Position Size:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="position"
+        value="{{ position?.position }}"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="unrealizedPnL" class="col-form-label">Unrealized PnL:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="unrealizedPnL"
+        value="{{ position?.unrealizedPnL }}"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="realizedPnL" class="col-form-label">Realized PnL:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="realizedPnL"
+        value="{{ position?.realizedPnL }}"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="averageCost" class="col-form-label">Average Cost:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="averageCost"
+        value="{{ position?.averageCost }}"
+      />
+    </div>
+    <!-- <div class="mb-3">
+      <label for="lastMarketPrice" class="col-form-label"
+        >Last Market Price:</label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="lastMarketPrice"
+        value="{{ position?.lastMarketPrice }}"
+      />
+    </div> -->
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-secondary"
+    (click)="activeModal.dismiss('Close')"
+  >
+    Close
+  </button>
+  <button type="button" class="btn btn-primary" (click)="activeModal.close()">
+    Save changes
+  </button>
+</div>

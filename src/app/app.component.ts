@@ -3,6 +3,8 @@ import { Position } from './position';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PositionService } from './position.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditPositionModalComponent } from './edit-position-modal/edit-position-modal.component';
+import { DeletePositionModalComponent } from './delete-position-modal/delete-position-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -49,35 +51,13 @@ export class AppComponent implements OnInit {
   }
 
   public onOpenModal(position: Position, mode: String): void {
-    // set the position data
-    const selectedPositon = position;
-    const selectedMode = mode;
-    // get table
-    const table = document.getElementById('main-container');
-    // create button
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.style.display = 'none';
-    button.setAttribute('data-toggle', 'modal');
-
-    if (mode === 'add') {
-      button.setAttribute('data-target', '#addPositionModal');
-    }
-
+    let modalReference;
     if (mode === 'edit') {
-      button.setAttribute('data-target', '#editPositionModal');
+      modalReference = this.modalService.open(EditPositionModalComponent);
+    } else if (mode === 'delete') {
+      modalReference = this.modalService.open(DeletePositionModalComponent);
     }
-
-    if (mode === 'delete') {
-      button.setAttribute('data-target', '#deletePositionModal');
-    }
-
-    table?.appendChild(button);
-    button.click();
-
-    // open the modal
-    const modal = document.getElementById('editPositionModal');
-    const modalInstance = this.modalService.open(modal);
-    // modalInstance.show();
+    // set the data for a model
+    modalReference!.componentInstance.position = position;
   }
 }

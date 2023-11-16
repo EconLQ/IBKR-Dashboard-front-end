@@ -1,35 +1,53 @@
-<table
-  class="table table-dark table-stripped-columns table-hover"
-  style="
-    width: -webkit-fill-available;
-    text-align: center;
-    margin: auto;
-    border: 1px solid black;
-    border-collapse: collapse;
-  "
->
-  <thead>
-    <tr>
-      <th scope="col">Contract Id</th>
-      <th scope="col">Ticker</th>
-      <th scope="col">Entry date</th>
-      <th scope="col">Position Size</th>
-      <th scope="col">Unrealized PnL</th>
-      <th scope="col">Unrealized PnL</th>
-      <th scope="col">Average Cost</th>
-      <th scope="col">Last Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let position of positions">
-      <td>{{ position.contractId }}</td>
-      <td>{{ position.ticker }}</td>
-      <td>{{ position.date }}</td>
-      <td>{{ position.position }}</td>
-      <td>{{ position.unrealizedPnL }}</td>
-      <td>{{ position.realizedPnL }}</td>
-      <td>{{ position.averageCost }}</td>
-      <td>{{ position.lastMarketPrice }}</td>
-    </tr>
-  </tbody>
-</table>
+<div id="main-container">
+  <table
+    class="table table-dark table-stripped-columns table-hover"
+    id="positions-table"
+  >
+    <thead>
+      <tr>
+        <th scope="col">Contract Id</th>
+        <th scope="col">Ticker</th>
+        <th scope="col">Entry date</th>
+        <th scope="col">Position Size</th>
+        <th scope="col">Unrealized PnL</th>
+        <th scope="col">Unrealized PnL</th>
+        <th scope="col">Average Cost</th>
+        <th scope="col">Last Price</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let position of positions">
+        <td>{{ position.contractId }}</td>
+        <td>{{ position.ticker }}</td>
+        <td>{{ position.date }}</td>
+        <td>{{ position.position }}</td>
+        <td>{{ position.unrealizedPnL }}</td>
+        <td>{{ position.realizedPnL }}</td>
+        <td>{{ position.averageCost }}</td>
+        <td>{{ position.lastMarketPrice }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            (click)="onOpenModal(position, 'edit')"
+          >
+            Edit
+          </button>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-bs-toggle="modal"
+            (click)="onOpenModal(position, 'delete')"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
