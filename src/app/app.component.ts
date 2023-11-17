@@ -35,19 +35,31 @@ export class AppComponent implements OnInit {
 
         for (let position of this.positions) {
           const date = position.date as any; // parse date object
+          console.log(date);
 
           // set date to a custom format
-          position.date = `${date['year']}-${date['monthValue']}-${
-            date['dayOfMonth'] < 10
-              ? '0' + date['dayOfMonth']
-              : date['dayOfMonth']
-          }`;
+          position.date = `${date['year']}-${
+            date['monthValue']
+          }-${this.timeDateValidator(
+            date['dayOfMonth']
+          )}T${this.timeDateValidator(date['hour'])}:${this.timeDateValidator(
+            date['minute']
+          )}:${this.timeDateValidator(date['second'])}`;
         }
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
       }
     );
+  }
+
+  /**
+   * Custom date and time validator for values less than 10
+   * @param value date or time value
+   * @returns a string with appends 0 if value < 10
+   */
+  private timeDateValidator(value: number): String {
+    return value < 10 ? '0' + value : value.toString();
   }
 
   public onOpenModal(position: Position, mode: String): void {
