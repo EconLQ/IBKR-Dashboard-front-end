@@ -8,10 +8,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditPositionModalComponent } from './edit-position-modal/edit-position-modal.component';
 import { DeletePositionModalComponent } from './delete-position-modal/delete-position-modal.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, EditPositionModalComponent, DeletePositionModalComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule, FormsModule],
   providers: [PositionService],
   bootstrap: [AppComponent],
 })

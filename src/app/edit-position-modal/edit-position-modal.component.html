@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h1 class="modal-title fs-5" id="editModalLabel">
-    Edit {{ position?.ticker }} position
+    Edit {{ position.ticker }} position
   </h1>
   <button
     type="button"
@@ -9,14 +9,15 @@
   ></button>
 </div>
 <div class="modal-body">
-  <form>
+  <form #editForm="ngForm" (ngSubmit)="updatePosition(editForm)">
     <div class="mb-3">
       <label for="ticker" class="col-form-label">Ticker:</label>
       <input
         type="text"
+        [ngModel]="position.ticker"
+        name="ticker"
         class="form-control"
         id="ticker"
-        value="{{ position?.ticker }}"
       />
     </div>
     <div class="mb-3">
@@ -24,17 +25,20 @@
       <input
         type="text"
         class="form-control"
+        [ngModel]="position.date"
+        name="date"
         id="date"
-        value="{{ position?.date }}"
+        pattern="/([0-2][0-9]{4})\-([0-1][0-9])\-([0-3][0-9])T([0-5][0-9])\:([0-5][0-9])\:([0-5][0-9])"
       />
     </div>
     <div class="mb-3">
       <label for="position" class="col-form-label">Position Size:</label>
       <input
         type="text"
+        [ngModel]="position.position"
+        name="position"
         class="form-control"
         id="position"
-        value="{{ position?.position }}"
       />
     </div>
     <div class="mb-3">
@@ -42,8 +46,9 @@
       <input
         type="text"
         class="form-control"
+        [ngModel]="position.unrealizedPnL"
+        name="unrealizedPnL"
         id="unrealizedPnL"
-        value="{{ position?.unrealizedPnL }}"
       />
     </div>
     <div class="mb-3">
@@ -51,8 +56,9 @@
       <input
         type="text"
         class="form-control"
+        [ngModel]="position.realizedPnL"
+        name="realizedPnL"
         id="realizedPnL"
-        value="{{ position?.realizedPnL }}"
       />
     </div>
     <div class="mb-3">
@@ -60,32 +66,38 @@
       <input
         type="text"
         class="form-control"
+        [ngModel]="position.averageCost"
+        name="averageCost"
         id="averageCost"
-        value="{{ position?.averageCost }}"
       />
     </div>
-    <!-- <div class="mb-3">
+    <div class="mb-3">
       <label for="lastMarketPrice" class="col-form-label"
         >Last Market Price:</label
       >
       <input
         type="text"
         class="form-control"
+        [ngModel]="position.lastMarketPrice"
+        name="lastMarketPrice"
         id="lastMarketPrice"
-        value="{{ position?.lastMarketPrice }}"
       />
-    </div> -->
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="activeModal.dismiss('Close')"
+      >
+        Close
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="activeModal.close()"
+      >
+        Update
+      </button>
+    </div>
   </form>
-</div>
-<div class="modal-footer">
-  <button
-    type="button"
-    class="btn btn-secondary"
-    (click)="activeModal.dismiss('Close')"
-  >
-    Close
-  </button>
-  <button type="button" class="btn btn-primary" (click)="activeModal.close()">
-    Save changes
-  </button>
 </div>
