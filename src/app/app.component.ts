@@ -72,4 +72,29 @@ export class AppComponent implements OnInit {
     // set the data for a model
     modalReference!.componentInstance.position = position;
   }
+  /**
+   * Performs search for positions on front-end according to the passed key
+   * @param key position's date in format (yyyy-MM-DD) or ticker
+   */
+  public searchPositions(key: String): void {
+    const result: Position[] = [];
+    for (const position of this.positions) {
+      const positionDate: String = position.date as String;
+      // parse string till the time value
+      const dateKeyToMatch = positionDate.substring(0, 10);
+
+      if (
+        position.ticker.toLowerCase().indexOf(key.toLowerCase()) != -1 ||
+        dateKeyToMatch.indexOf(key.toLowerCase()) != -1
+      ) {
+        result.push(position);
+      }
+    }
+    // reassign position to the result array
+    this.positions = result;
+
+    if (result.length === 0 || !key) {
+      this.getPositions();
+    }
+  }
 }
