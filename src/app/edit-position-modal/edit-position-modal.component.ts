@@ -18,21 +18,26 @@ export class EditPositionModalComponent {
   ) {}
 
   public updatePosition(editForm: NgForm): void {
-    // create new JSON object by appending contractId to editForm.value for valid request
-    const formWithContractId = {
+    // create new JSON object with updated position, un/realizedPnL fields
+    const updatedForm = {
       contractId: this.position.contractId,
+      ticker: this.position.ticker,
+      date: this.position.date,
       ...editForm.value,
+      averageCost: this.position.averageCost,
+      lastMarketPrice: this.position.lastMarketPrice,
     };
 
-    console.log('Passed JSON object: ', formWithContractId);
+    console.log('Passed JSON object: ', updatedForm);
 
     this.positionService
-      .updatePosition(this.position.contractId, formWithContractId)
+      .updatePosition(this.position.contractId, updatedForm)
       .subscribe(
         (response: Position) => {
           console.log(response);
           this.positionService.getPositions();
         },
+        // TODO: handle error properly
         (error: HttpErrorResponse) => {
           alert(error.message);
         }
