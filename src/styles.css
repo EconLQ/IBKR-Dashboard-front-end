@@ -12,7 +12,7 @@ body {
   background-image: url(assets/img/background_image.jpg);
   margin: 0;
 }
-
+/* position-table.component styles */
 #position-title,
 #position-subtitle {
   text-align: center;
@@ -22,4 +22,12 @@ body {
 #position-subtitle {
   padding: 0;
   font-style: italic;
+}
+
+#search-form {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
