@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Position } from '../position';
+import { Position } from '../positions-table/position';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { PositionService } from '../position.service';
+import { PositionService } from '../positions-table/position.service';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 
