@@ -41,7 +41,6 @@ export class PositionsTableComponent {
 
         for (let position of this.positions) {
           const date = position.date as any; // parse date object
-          console.log(date);
 
           // set date to a custom format
           position.date = `${date['year']}-${

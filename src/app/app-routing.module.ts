@@ -3,9 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { PositionsTableComponent } from './positions-table/positions-table.component';
 
+import { LoginComponent } from './login/login.component';
+
 const routes: Routes = [
+  { path: 'login', component: LoginComponent },
   { path: 'positions', component: PositionsTableComponent },
-  // { path: '', redirectTo: '/positions', pathMatch: 'full' }, // Redirect to 'positions' by default
+  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirect to 'login' by default
 ];
 
 @NgModule({
