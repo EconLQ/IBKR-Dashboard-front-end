@@ -17,7 +17,7 @@ import { PositionsTableComponent } from './positions-table/positions-table.compo
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { CookieService } from 'ngx-cookie-service';
-
+import { NavbarService } from './shared/navbar/navbar.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import { CookieService } from 'ngx-cookie-service';
     NgbModule,
     FormsModule,
   ],
-  providers: [PositionService, CookieService, NgbActiveModal],
+  providers: [PositionService, CookieService, NgbActiveModal, NavbarService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
