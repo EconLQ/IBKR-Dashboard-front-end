@@ -1,0 +1,54 @@
+<div *ngIf="userExists" id="userExist-msg">
+  <span>It seems that user with such username already exists</span><br />
+  <span>Try <a href="login">Log In</a> pal</span>
+</div>
+<div id="signUp-form">
+  <div id="form-title">
+    <h4>Sign Up to IBKR Dashboard</h4>
+  </div>
+  <form #signUpForm="ngForm" (ngSubmit)="signUp(signUpForm)">
+    <div class="mb-3">
+      <label for="userName" class="form-label">Username</label>
+      <input
+        type="email"
+        [ngModel]="user?.username"
+        name="username"
+        class="form-control"
+        id="userName"
+        aria-describedby="emailHelp"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="userPassword" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="userPassword"
+        [ngModel]="user?.password"
+        name="password"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="userAccountId" class="form-label">Accound Id*</label>
+      <br /><span id="accountId-note-text"
+        >Note*: You should pass your Interactive Broker's Account Id</span
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="userAccountId"
+        [ngModel]="user?.accountId"
+        name="accountId"
+      />
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+      <label class="form-check-label" for="exampleCheck1"
+        >Sell my data to CCP</label
+      >
+    </div>
+    <div id="submit-btn">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
