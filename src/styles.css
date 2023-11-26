@@ -5,3 +5,8 @@ body {
   background-image: url(assets/img/background_image.jpg);
   margin: 0;
 }
+
+#logo-image {
+  text-align: center;
+  margin-bottom: 10px;
+}
