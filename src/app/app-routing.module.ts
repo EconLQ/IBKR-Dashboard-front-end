@@ -3,11 +3,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { PositionsTableComponent } from './positions-table/positions-table.component';
 
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { AuthGuard } from './auth/auth-guard.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'positions', component: PositionsTableComponent },
+  { path: 'sign-up', component: SignupComponent },
+  {
+    path: 'positions',
+    component: PositionsTableComponent,
+    canActivate: [AuthGuard],
+  },
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirect to 'login' by default
 ];
 

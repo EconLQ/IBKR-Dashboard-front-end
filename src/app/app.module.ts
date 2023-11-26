@@ -15,9 +15,11 @@ import { DeletePositionModalComponent } from './delete-position-modal/delete-pos
 import { FormsModule } from '@angular/forms';
 import { PositionsTableComponent } from './positions-table/positions-table.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/login/login.component';
 import { CookieService } from 'ngx-cookie-service';
 import { NavbarService } from './shared/navbar/navbar.service';
+import { SignupComponent } from './auth/signup/signup.component';
+import { AuthGuard } from './auth/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { NavbarService } from './shared/navbar/navbar.service';
     PositionsTableComponent,
     NavbarComponent,
     LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,7 @@ import { NavbarService } from './shared/navbar/navbar.service';
     NgbModule,
     FormsModule,
   ],
-  providers: [PositionService, CookieService, NgbActiveModal, NavbarService],
+  providers: [PositionService, CookieService, NgbActiveModal, NavbarService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
