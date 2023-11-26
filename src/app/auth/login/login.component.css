@@ -1,0 +1,28 @@
+#login-form {
+  display: table;
+  color: aliceblue;
+  margin: auto;
+  width: 30vw;
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+#invalid-creds-msg {
+  text-align: center;
+  border: 1px solid sandybrown;
+  border-radius: 5px;
+  color: antiquewhite;
+  font-size: 1.1em;
+  margin: auto;
+  width: 50vw;
+}
+
+#submit-btn {
+  text-align: center;
+}
+
+#form-title {
+  text-align: center;
+}
