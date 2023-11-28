@@ -24,3 +24,6 @@ table {
   align-items: center;
   text-align: center;
 }
+#refresh-positions {
+  padding: 10px;
+}

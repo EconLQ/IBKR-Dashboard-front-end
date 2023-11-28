@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
 import { Position } from './position';
-import { HttpErrorResponse } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DeletePositionModalComponent } from '../delete-position-modal/delete-position-modal.component';
-import { EditPositionModalComponent } from '../edit-position-modal/edit-position-modal.component';
+import { DeletePositionModalComponent } from '../modals/delete-position-modal/delete-position-modal.component';
+import { EditPositionModalComponent } from '../modals/edit-position-modal/edit-position-modal.component';
 import { PositionService } from './position.service';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../environments/environment.development';
+import { RefreshTableModalComponent } from '../modals/refresh-table-modal/refresh-table-modal.component';
 
 @Component({
   selector: 'app-positions-table',
@@ -15,11 +17,14 @@ import { ActivatedRoute } from '@angular/router';
 export class PositionsTableComponent {
   public positions: Position[] = [];
   public isPositionsRoute: boolean = false;
+  applicationUrl = environment.applicationUrl;
+  isRefreshed: boolean = false;
 
   constructor(
     private positionService: PositionService,
     private route: ActivatedRoute,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private httpClient: HttpClient
   ) {}
 
   public open(modal: any): void {
@@ -76,6 +81,10 @@ export class PositionsTableComponent {
     }
     // set the data for a model
     modalReference!.componentInstance.position = position;
+  }
+
+  public refreshModal() {
+    this.modalService.open(RefreshTableModalComponent);
   }
   /**
    * Performs search for positions on front-end according to the passed key
