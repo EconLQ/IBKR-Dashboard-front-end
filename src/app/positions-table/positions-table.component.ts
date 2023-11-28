@@ -1,6 +1,6 @@
 import { Position } from './position';
 import { Component } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DeletePositionModalComponent } from '../modals/delete-position-modal/delete-position-modal.component';
 import { EditPositionModalComponent } from '../modals/edit-position-modal/edit-position-modal.component';
@@ -24,7 +24,8 @@ export class PositionsTableComponent {
   constructor(
     private positionService: PositionService,
     private route: ActivatedRoute,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private httpClient: HttpClient
   ) {}
 
   public open(modal: any): void {
