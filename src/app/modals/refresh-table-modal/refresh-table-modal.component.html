@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h1 class="modal-title fs-5" id="refreshModalLabel">
+    Do you want to refresh* positions table?
+  </h1>
+</div>
+<div class="modal-body">
+  <div class="mb-3">
+    <span
+      ><i
+        >*If you press on refresh the page will page will be automatically
+        refreshed in 5 seconds.</i
+      ></span
+    >
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="activeModal.close()">
+      Close
+    </button>
+    <button
+      type="button"
+      class="btn btn-success"
+      (click)="requestPositionsFromServlet()"
+    >
+      Refresh
+    </button>
+  </div>
+</div>
