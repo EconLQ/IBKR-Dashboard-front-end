@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClient } from '@angular/common/http';
+import { RefreshTableService } from './refresh-table.service';
 
 @Component({
   selector: 'app-refresh-table-modal',
@@ -13,28 +13,13 @@ export class RefreshTableModalComponent {
 
   constructor(
     public activeModal: NgbActiveModal,
-    private httpClient: HttpClient
+    private refreshTableService: RefreshTableService
   ) {}
 
   /**
    * speaks to a back-end client (servlet) which start application on GET request
    */
-  requestPositionsFromServlet(): void {
-    this.httpClient.get(`${this.applicationUrl}/app-servlet`).subscribe(
-      (response) => {
-        console.log('Positions fetched succesfully...', response);
-      },
-      (error) => {
-        if (error.status == 200) {
-          console.log('Positions fetched...');
-        } else {
-          console.error('Error fetching position', error);
-        }
-      }
-    );
-
-    setTimeout(() => {
-      window.location.reload();
-    }, 5000);
+  public requestPositionsFromServlet(): void {
+    this.refreshTableService.updatePositionsTable();
   }
 }
