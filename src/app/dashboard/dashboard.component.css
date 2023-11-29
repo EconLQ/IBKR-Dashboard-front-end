@@ -1,0 +1,24 @@
+#dashboard-container {
+  margin: 0;
+  padding: 10px 0 0 10px;
+  color: #fff;
+}
+
+#upload-file-div,
+#file-content-title,
+#header-text {
+  text-align: center;
+}
+
+#header-text {
+  margin: 0 0 10px 0;
+}
+
+#upload-file-div,
+#file-content-title {
+  font-style: italic;
+}
+#file-content-area {
+  margin: auto;
+  padding-top: 20px;
+}

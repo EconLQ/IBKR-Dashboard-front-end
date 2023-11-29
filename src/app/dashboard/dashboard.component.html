@@ -1,0 +1,25 @@
+<div id="dashboard-container">
+  <div id="header-text">
+    <span><i>Click on the button below to upload .CSV report</i></span>
+  </div>
+  <div id="upload-file-div">
+    <input
+      #fileImportInput
+      [accept]="'.csv'"
+      type="file"
+      id="file-input"
+      (change)="importDataFromCSV($event)"
+      hidden="true"
+    />
+    <button class="btn btn-primary" (click)="fileImportInput.click()">
+      Download Report
+    </button>
+  </div>
+  <div id="file-content-area">
+    <h3 id="file-content-title">Report Data</h3>
+    <div id="file-content-container">
+      <!-- <div *ngFor="let item of importedData">{{ item | json }}</div> -->
+      <div *ngFor="let item of csvRecords">{{ item | json }}</div>
+    </div>
+  </div>
+</div>
