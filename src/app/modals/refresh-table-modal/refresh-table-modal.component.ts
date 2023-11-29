@@ -9,6 +9,7 @@ import { RefreshTableService } from './refresh-table.service';
   styleUrl: './refresh-table-modal.component.css',
 })
 export class RefreshTableModalComponent {
+  clicked: boolean = false; // for Refresh button in the modal 
   applicationUrl: string = environment.applicationUrl;
 
   constructor(

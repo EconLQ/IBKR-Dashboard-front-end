@@ -19,7 +19,8 @@
     <button
       type="button"
       class="btn btn-success"
-      (click)="requestPositionsFromServlet()"
+      [disabled]="clicked"
+      (click)="requestPositionsFromServlet(); clicked = true"
     >
       Refresh
     </button>
