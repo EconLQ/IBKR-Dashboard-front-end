@@ -18,9 +18,11 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { RefreshTableModalComponent } from './modals/refresh-table-modal/refresh-table-modal.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { CsvService } from './dashboard/services/csv.services';
 import { NgxCsvParserModule } from 'ngx-csv-parser';
 import { RefreshTableService } from './modals/refresh-table-modal/refresh-table.service';
+import { ZingchartAngularModule } from 'zingchart-angular';
+import { KeyStatsComponent } from './dashboard/tables/key-stats/key-stats.component';
+import { RiskMeasuresBenchComponent } from './dashboard/tables/risk-measures-bench/risk-measures-bench.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { RefreshTableService } from './modals/refresh-table-modal/refresh-table.
     SignupComponent,
     RefreshTableModalComponent,
     DashboardComponent,
+    KeyStatsComponent,
+    RiskMeasuresBenchComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +45,7 @@ import { RefreshTableService } from './modals/refresh-table-modal/refresh-table.
     NgbModule,
     FormsModule,
     NgxCsvParserModule,
+    ZingchartAngularModule,
   ],
   providers: [
     PositionService,
@@ -48,7 +53,6 @@ import { RefreshTableService } from './modals/refresh-table-modal/refresh-table.
     NgbActiveModal,
     NavbarService,
     AuthGuard,
-    CsvService,
     RefreshTableService,
   ],
   bootstrap: [AppComponent],
