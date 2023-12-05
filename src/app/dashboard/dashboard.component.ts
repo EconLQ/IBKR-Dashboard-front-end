@@ -1,8 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
-import { CsvService } from './services/csv.services';
-import { NgxCSVParserError, NgxCsvParser } from 'ngx-csv-parser';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,72 +8,37 @@ import { NgxCSVParserError, NgxCsvParser } from 'ngx-csv-parser';
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent {
-  csvRecords: any;
-  header: boolean = false;
+  apiBaseUrl = environment.apiBaseUrl;
+  dashboardBaseUrl = `${this.apiBaseUrl}/dashboard`;
 
-  constructor(
-    private _csvService: CsvService,
-    private ngxCsvParser: NgxCsvParser
-  ) {}
+  isUploaded: boolean = false;
+
+  constructor(private httpClient: HttpClient) {}
 
   @ViewChild('fileImportInput') fileImportInput: any;
-  /**
-   * Using NgxCsvParser lib
-   */
+
+  onNodeMouseover($event: Event) {}
   public importDataFromCSV(event: any): void {
-    const files: Array<File> = event.srcElement.files;
-    this.header =
-      (this.header as unknown as string) === 'true' || this.header === true;
+    this.isUploaded = false;
+    const file: File = event.srcElement.files[0];
 
-    this.ngxCsvParser
-      .parse(files[0], {
-        header: this.header,
-        delimiter: ',',
-        encoding: 'utf8',
-      })
-      .pipe()
-      .subscribe({
-        next: (result): void => {
-          console.log('Result:', result);
-          this.csvRecords = result;
-        },
-        error: (error: NgxCSVParserError): void => {
-          console.log('Error', error);
-        },
-      });
+    // formdata
+    let formData: FormData = new FormData();
+    formData.append('file', file, file.name);
+
+    // send request to server
+    this.httpClient.post(`${this.apiBaseUrl}/upload`, formData).subscribe(
+      (response) => {
+        console.log('Response', response);
+        this.isUploaded = true;
+      },
+      (error) => {
+        if (error.status == 200) {
+          console.log('Response is OK');
+        } else {
+          console.log('error', error);
+        }
+      }
+    );
   }
-  /**
-   * Import data via custom CSVService
-   * @param event upload file event on input trigger
-   */
-  // public async importDataFromCSV(event: any) {
-  //   let fileContent = await this.getTextFromFile(event);
-  //   this.importedData = this._csvService.importDataFromCSV(fileContent);
-  // }
-
-  // async getTextFromFile(event: any) {
-  //   const file: File = event.target.files[0];
-  //   let fileContent = await file.text();
-  //   return fileContent;
-  // }
-
-  // uploadFile(file: any) {
-  //   let formData = new FormData();
-  //   formData.append('file', new Blob([file], { type: 'text/csv' }), file.name);
-
-  //   // formData.append('file', file, file.name);
-
-  //   this.httpClient
-  //     .post(`${this.apiBaseUrl}/upload`, formData, {
-  //       headers: new HttpHeaders("'Content-Type', 'multipart/form-data'"),
-  //     })
-  //     .subscribe(
-  //       (response) => {
-  //         console.log(response);
-  //       },
-  //       (error) => {
-  //         console.log('Error uploading file: ', error);
-  //       }
-  //     );
-  // }
 }

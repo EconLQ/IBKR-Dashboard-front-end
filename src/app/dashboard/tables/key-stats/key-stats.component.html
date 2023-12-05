@@ -1,0 +1,110 @@
+<div id="key-stats">
+  <h3 id="key-stats-title">Portfolio Key Statistics</h3>
+  <div>
+    <table
+      class="table table-dark table-stripped-columns table-bordered table-hover"
+      id="key-stats-table"
+    >
+      <thead>
+        <tr>
+          <th>Beginning NAV</th>
+        </tr>
+        <tr>
+          <th>Ending NAV</th>
+        </tr>
+        <tr>
+          <th>Cumulative Return</th>
+        </tr>
+        <tr>
+          <th>1-Month Return</th>
+        </tr>
+        <tr>
+          <th>1-Month Return DateRange</th>
+        </tr>
+        <tr>
+          <th>3-Month Return</th>
+        </tr>
+        <tr>
+          <th>3-Month Return DateRange</th>
+        </tr>
+        <tr>
+          <th>Best Return</th>
+        </tr>
+        <tr>
+          <th>Best Return Date</th>
+        </tr>
+        <tr>
+          <th>Worst Return</th>
+        </tr>
+        <tr>
+          <th>Worst Return Date</th>
+        </tr>
+        <tr>
+          <th>Deposits/Withdrawals</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            {{ keyStatEntity.beginningNAV }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{ keyStatEntity.endingNAV }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{ keyStatEntity.cumulativeReturn }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{ keyStatEntity.oneMonthReturn }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{ keyStatEntity.oneMonthReturnDateRange }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{ keyStatEntity.threeMonthReturn }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{ keyStatEntity.threeMonthReturnDateRange }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{ keyStatEntity.bestReturn }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{ keyStatEntity.bestReturnDate }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{ keyStatEntity.worstReturn }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{ keyStatEntity.worstReturnDate }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {{ keyStatEntity.depositsWithdrawals }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
