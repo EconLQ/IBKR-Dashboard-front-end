@@ -2,7 +2,12 @@
   <div id="header-text">
     <span><i>Click on the button below to upload .CSV report</i></span>
   </div>
-  <div id="upload-file-div">
+
+  <div id="update-date" style="text-align: right">
+    <span>Last Update: <i>2023-11-29</i></span>
+  </div>
+
+  <div *ngIf="isUploaded" id="upload-file-div">
     <input
       #fileImportInput
       [accept]="'.csv'"
@@ -15,11 +20,25 @@
       Download Report
     </button>
   </div>
-  <div id="file-content-area">
+  <!-- <div id="file-content-area">
     <h3 id="file-content-title">Report Data</h3>
     <div id="file-content-container">
-      <!-- <div *ngFor="let item of importedData">{{ item | json }}</div> -->
       <div *ngFor="let item of csvRecords">{{ item | json }}</div>
     </div>
+  </div> -->
+
+  <!-- <div>
+    <zingchart-angular
+      [config]="config"
+      [height]="300"
+      [width]="750"
+      (node_mouseover)="onNodeMouseover($event)"
+    ></zingchart-angular>
+  </div> -->
+  <div id="key-stats">
+    <app-key-stats></app-key-stats>
+  </div>
+  <div id="risk-measures-bench">
+    <app-risk-measures-bench></app-risk-measures-bench>
   </div>
 </div>
