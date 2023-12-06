@@ -32,6 +32,11 @@ export class RefreshTableService {
             'lastPositionUpdateDateTime',
             this.lastPositionUpdateDateTime
           );
+          // reload the page to update values in the table
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+
           return true;
         } else {
           console.error('Error fetching position', error);
@@ -39,11 +44,6 @@ export class RefreshTableService {
         }
       }
     );
-
-    // reload the page to update values in the table
-    setTimeout(() => {
-      window.location.reload();
-    }, 5000);
 
     return true;
   }
