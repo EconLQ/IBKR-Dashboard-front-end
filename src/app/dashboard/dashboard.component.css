@@ -23,7 +23,16 @@
   padding-top: 20px;
 }
 
-#risk-measures-bench {
-  width: 50vw;
+.charts-container {
+  padding: 10px;
+  width: 100%;
   display: flex;
+  flex-wrap: wrap;
+}
+
+#hist-perf-bench {
+  width: 70%;
+}
+#key-stats {
+  width: 30%;
 }
