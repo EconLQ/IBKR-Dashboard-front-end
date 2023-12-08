@@ -20,9 +20,10 @@ import { RefreshTableModalComponent } from './modals/refresh-table-modal/refresh
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxCsvParserModule } from 'ngx-csv-parser';
 import { RefreshTableService } from './modals/refresh-table-modal/refresh-table.service';
-import { ZingchartAngularModule } from 'zingchart-angular';
 import { KeyStatsComponent } from './dashboard/tables/key-stats/key-stats.component';
 import { RiskMeasuresBenchComponent } from './dashboard/tables/risk-measures-bench/risk-measures-bench.component';
+import { RiskMeasuresBenchCompService } from './dashboard/tables/risk-measures-bench/risk-measures-bench.service';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { RiskMeasuresBenchComponent } from './dashboard/tables/risk-measures-ben
     NgbModule,
     FormsModule,
     NgxCsvParserModule,
-    ZingchartAngularModule,
+    NgChartsModule,
   ],
   providers: [
     PositionService,
@@ -54,6 +55,7 @@ import { RiskMeasuresBenchComponent } from './dashboard/tables/risk-measures-ben
     NavbarService,
     AuthGuard,
     RefreshTableService,
+    RiskMeasuresBenchCompService,
   ],
   bootstrap: [AppComponent],
 })
