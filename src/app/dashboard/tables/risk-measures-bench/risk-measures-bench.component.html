@@ -1,6 +1,16 @@
-<p>risk-measures-bench works!</p>
+<h3>Risk Measures Benchmark Comparison</h3>
 <div>
-  <p *ngFor="let rmb of riskMeasuresBenchComp">
-    <span>{{ rmb }}</span>
-  </p>
+  <div class="chart-container">
+    <div>
+      <canvas id="sharpeSortinoChart">{{ chart }}</canvas>
+    </div>
+    <br />
+    <div>
+      <canvas id="endingVamiChart">{{ chart }}</canvas>
+    </div>
+    <br />
+    <div>
+      <canvas id="maxDDChart">{{ chart }}</canvas>
+    </div>
+  </div>
 </div>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../../../environments/environment.development';
-import { HttpClient } from '@angular/common/http';
+import { RiskMeasuresBenchCompService } from './risk-measures-bench.service';
 
 @Component({
   selector: 'app-risk-measures-bench',
@@ -8,30 +7,29 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './risk-measures-bench.component.css',
 })
 export class RiskMeasuresBenchComponent implements OnInit {
-  apiBaseUrl = environment.apiBaseUrl;
-  dashboardBaseUrl = `${this.apiBaseUrl}/dashboard`;
+  // Chart.js object
+  chart: any;
 
-  riskMeasuresBenchComp: RiskMeasuresBenchComponent[] = [];
-  
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private riskMeasursBenchCompService: RiskMeasuresBenchCompService
+  ) {}
 
-  ngOnInit(): void {
-    this.getRiskMeasuresBenchComp();
+  ngOnInit() {
+    // request data
+    this.riskMeasursBenchCompService.getRiskMeasuresBenchComp();
+    // get charts
+    this.getSharpeSortinoChart();
+    this.getEndingVamiChart();
+    this.getMaxDDChart();
   }
 
-  getRiskMeasuresBenchComp() {
-    this.httpClient
-      .get<RiskMeasuresBenchComponent[]>(
-        `${this.dashboardBaseUrl}/risk-measures-benchmark`
-      )
-      .subscribe(
-        (response: RiskMeasuresBenchComponent[]) => {
-          console.log('Response', response);
-          this.riskMeasuresBenchComp = response;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+  getSharpeSortinoChart() {
+    return this.riskMeasursBenchCompService.sharpeSortinoChart;
+  }
+  getEndingVamiChart() {
+    return this.riskMeasursBenchCompService.endingVamiChart;
+  }
+  getMaxDDChart() {
+    return this.riskMeasursBenchCompService.maxDDChart;
   }
 }
