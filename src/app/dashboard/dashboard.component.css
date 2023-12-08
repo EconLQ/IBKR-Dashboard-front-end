@@ -22,3 +22,8 @@
   margin: auto;
   padding-top: 20px;
 }
+
+#risk-measures-bench {
+  width: 50vw;
+  display: flex;
+}
