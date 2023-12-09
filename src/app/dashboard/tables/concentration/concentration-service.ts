@@ -29,13 +29,18 @@ export class ConcentrationHoldingsService {
   getConcentrationHoldingsData() {
     this.httpClient
       .get<Observable<ConcentrationHoldingsItem[]>>(this.tableEndpoint)
-      .subscribe((response: Observable<ConcentrationHoldingsItem[]>) => {
-        console.log('getConcentrationHoldingsData', response);
-        this.tableData = response as any;
+      .subscribe(
+        (response: Observable<ConcentrationHoldingsItem[]>) => {
+          console.log('getConcentrationHoldingsData', response);
+          this.tableData = response as any;
 
-        this.getConcentrationHoldingsDataset();
-        this.createConcentrationHoldingsChart();
-      });
+          this.getConcentrationHoldingsDataset();
+          this.createConcentrationHoldingsChart();
+        },
+        (error) => {
+          console.log('Error', error);
+        }
+      );
   }
 
   getConcentrationHoldingsDataset() {
@@ -80,6 +85,9 @@ export class ConcentrationHoldingsService {
           title: {
             display: true,
             text: 'Concentration Holdings (Sectors)',
+            font: {
+              size: 14,
+            },
           },
           legend: {
             display: true,

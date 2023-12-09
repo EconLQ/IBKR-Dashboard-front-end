@@ -90,6 +90,9 @@ export class HistoricalPerfBenchCompService {
           title: {
             display: true,
             text: 'Historical Performance Benchamrk Comparison',
+            font: {
+              size: 16,
+            },
           },
           legend: {
             display: true,
