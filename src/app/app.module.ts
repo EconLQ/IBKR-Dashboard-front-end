@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PositionService } from './positions-table/position.service';
@@ -24,6 +23,17 @@ import { KeyStatsComponent } from './dashboard/tables/key-stats/key-stats.compon
 import { RiskMeasuresBenchComponent } from './dashboard/tables/risk-measures-bench/risk-measures-bench.component';
 import { RiskMeasuresBenchCompService } from './dashboard/tables/risk-measures-bench/risk-measures-bench.service';
 import { NgChartsModule } from 'ng2-charts';
+import { HistPerfBenchCompComponent } from './dashboard/tables/hist-perf-bench-comp/hist-perf-bench-comp.component';
+import { ConcentrationComponent } from './dashboard/tables/concentration/concentration.component';
+import { AssetClassComponent } from './dashboard/tables/allocation/asset-class/asset-class.component';
+import { RegionComponent } from './dashboard/tables/allocation/region/region.component';
+import { PerformanceBySectorComponent } from './dashboard/tables/allocation/performance-by-sector/performance-by-sector.component';
+import { TimePeriodBenchCompComponent } from './dashboard/tables/time-period-bench-comp/time-period-bench-comp.component';
+import { HistoricalPerfBenchCompService } from './dashboard/tables/hist-perf-bench-comp/hist-perf-bench-comp.service';
+import { AssetClassService } from './dashboard/tables/allocation/asset-class/asset-class.service';
+import { PerformanceBySectorService } from './dashboard/tables/allocation/performance-by-sector/performance-by-sector.service';
+import { RegionService } from './dashboard/tables/allocation/region/region.service';
+import { ConcentrationHoldingsService } from './dashboard/tables/concentration/concentration-service';
 
 @NgModule({
   declarations: [
@@ -38,6 +48,12 @@ import { NgChartsModule } from 'ng2-charts';
     DashboardComponent,
     KeyStatsComponent,
     RiskMeasuresBenchComponent,
+    HistPerfBenchCompComponent,
+    ConcentrationComponent,
+    AssetClassComponent,
+    RegionComponent,
+    PerformanceBySectorComponent,
+    TimePeriodBenchCompComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +72,11 @@ import { NgChartsModule } from 'ng2-charts';
     AuthGuard,
     RefreshTableService,
     RiskMeasuresBenchCompService,
+    HistoricalPerfBenchCompService,
+    AssetClassService,
+    PerformanceBySectorService,
+    RegionService,
+    ConcentrationHoldingsService,
   ],
   bootstrap: [AppComponent],
 })
