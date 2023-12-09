@@ -85,6 +85,7 @@ export class HistoricalPerfBenchCompService {
         ],
       },
       options: {
+        responsive: true,
         plugins: {
           title: {
             display: true,
