@@ -36,3 +36,8 @@
 #key-stats {
   width: 30%;
 }
+#allocation-asset-class,
+#performance-by-sector,
+#time-period-bench-comp {
+  padding: 10px;
+}
