@@ -35,7 +35,6 @@ export class AuthGuard implements CanActivate {
    * @returns true if token is present is local storage
    */
   isLoggedIn(): boolean {
-    // Implement your logic to check if the user is logged in
     // check if a token is present in the local storage
     const token = localStorage.getItem('token');
     if (token !== null) {
