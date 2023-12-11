@@ -65,7 +65,7 @@ export class ConcentrationHoldingsService {
   }
 
   createConcentrationHoldingsChart(): Chart {
-    this.concentrationSectorsChart = new Chart('concentrationHoldingsChart', {
+    this.concentrationSectorsChart = new Chart('concentrationSectorsChart', {
       type: 'doughnut',
       data: {
         labels: this.sectors,
@@ -75,6 +75,12 @@ export class ConcentrationHoldingsService {
             data: this.concentrationSectorsDataset[0],
             hoverOffset: 4,
           },
+          {
+            label: 'Concentration (Sectors Allocation) Shorts',
+            data: this.concentrationSectorsDataset[1],
+            hoverOffset: 4,
+            backgroundColor: ['violet', 'orange', 'green', 'yellow'],
+          },
         ],
       },
       options: {
@@ -82,7 +88,7 @@ export class ConcentrationHoldingsService {
         plugins: {
           title: {
             display: true,
-            text: 'Concentration (Sectors Allocation) Longs',
+            text: 'Concentration (Sectors Allocation)',
             font: {
               size: 14,
             },
