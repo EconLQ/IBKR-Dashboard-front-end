@@ -56,12 +56,6 @@ export class RegionService {
           {
             label: 'Allocation by Region',
             data: this.endingNavArray,
-            backgroundColor: [
-              'grey',
-              'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)',
-              'blue',
-            ],
             hoverOffset: 4,
           },
         ],
