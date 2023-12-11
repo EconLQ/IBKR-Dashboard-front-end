@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
-import { ConcentrationHoldingsItem } from './concentration-item';
+import { ConcentrationSectorsItem } from './concentration-item';
 import { Observable } from 'rxjs';
 import { Chart } from 'chart.js';
 import 'chartjs-plugin-datalabels';
@@ -12,25 +12,23 @@ import ChartDataLabels, { Context } from 'chartjs-plugin-datalabels';
 })
 export class ConcentrationHoldingsService {
   private dashBoardEndpoint = environment.dashboardEndpoit;
-  private tableEndpoint = `${this.dashBoardEndpoint}/concentration-holdings`;
+  private tableEndpoint = `${this.dashBoardEndpoint}/concentration-sectors`;
 
   // chart
-  concentrationHoldingsChart: any;
+  concentrationSectorsChart: any;
   // dataset
-  concentrationHoldingsDataset: number[] = [];
-  symbols: string[] = [];
+  concentrationSectorsDataset: Array<number[]> = [];
   sectors: string[] = [];
-  totalNetValue: number = 0;
   // table's data
-  tableData: ConcentrationHoldingsItem[] = [];
+  tableData: ConcentrationSectorsItem[] = [];
 
   constructor(private httpClient: HttpClient) {}
 
   getConcentrationHoldingsData() {
     this.httpClient
-      .get<Observable<ConcentrationHoldingsItem[]>>(this.tableEndpoint)
+      .get<Observable<ConcentrationSectorsItem[]>>(this.tableEndpoint)
       .subscribe(
-        (response: Observable<ConcentrationHoldingsItem[]>) => {
+        (response: Observable<ConcentrationSectorsItem[]>) => {
           console.log('getConcentrationHoldingsData', response);
           this.tableData = response as any;
 
@@ -44,37 +42,37 @@ export class ConcentrationHoldingsService {
   }
 
   getConcentrationHoldingsDataset() {
-    this.tableData.forEach((row) => {
-      // we don't need total for the doughnut chart
-      if (row.symbol != 'Total' && row.symbol.length > 1) {
-        this.concentrationHoldingsDataset.push(
-          row.netValue < 0 ? row.netValue * -1 : row.netValue
-        );
-        // calculate total net value (shorts inclusive)
-        this.totalNetValue +=
-          row.netValue < 0 ? row.netValue * -1 : row.netValue;
+    let longParsedWeigthArr: number[] = [];
+    let shortParsedWeigthArr: number[] = [];
 
-        this.symbols.push(row.symbol);
+    this.tableData.forEach((row) => {
+      // we don't need total and unclassified for the doughnut chart
+      if (row.sector != 'Total' && row.sector != 'Unclassified') {
+        longParsedWeigthArr.push(row.longParsedWeight);
+        shortParsedWeigthArr.push(row.shortParsedWeight);
         this.sectors.push(row.sector);
       }
     });
+
+    this.concentrationSectorsDataset.push(
+      longParsedWeigthArr,
+      shortParsedWeigthArr
+    );
+    console.log(
+      'concentrationSectorsDataset',
+      this.concentrationSectorsDataset
+    );
   }
 
   createConcentrationHoldingsChart(): Chart {
-    this.concentrationHoldingsChart = new Chart('concentrationHoldingsChart', {
+    this.concentrationSectorsChart = new Chart('concentrationHoldingsChart', {
       type: 'doughnut',
       data: {
         labels: this.sectors,
         datasets: [
           {
-            label: 'Concentration Holdings',
-            data: this.concentrationHoldingsDataset,
-            backgroundColor: [
-              'grey',
-              'rgb(54, 162, 235)',
-              'rgb(255, 205, 86)',
-              'blue',
-            ],
+            label: 'Concentration (Sectors Allocation) Longs',
+            data: this.concentrationSectorsDataset[0],
             hoverOffset: 4,
           },
         ],
@@ -84,7 +82,7 @@ export class ConcentrationHoldingsService {
         plugins: {
           title: {
             display: true,
-            text: 'Concentration Holdings (Sectors)',
+            text: 'Concentration (Sectors Allocation) Longs',
             font: {
               size: 14,
             },
@@ -100,9 +98,7 @@ export class ConcentrationHoldingsService {
             align: 'start',
             anchor: 'end',
             formatter: (value) => {
-              return (
-                Number((value / this.totalNetValue) * 100).toFixed(2) + '%'
-              );
+              return Number(value).toFixed(2) + '%';
             },
             font: {
               size: 14,
@@ -112,6 +108,6 @@ export class ConcentrationHoldingsService {
       },
       plugins: [ChartDataLabels],
     });
-    return this.concentrationHoldingsChart;
+    return this.concentrationSectorsChart;
   }
 }

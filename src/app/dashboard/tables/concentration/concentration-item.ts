@@ -1,9 +1,5 @@
-export interface ConcentrationHoldingsItem {
-  subSection: string;
-  symbol: string;
-  description: string;
+export interface ConcentrationSectorsItem {
   sector: string;
-  longValue: number;
-  shortValue: number;
-  netValue: number;
+  longParsedWeight: number;
+  shortParsedWeight: number;
 }

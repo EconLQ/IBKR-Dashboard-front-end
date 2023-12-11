@@ -20,6 +20,6 @@ export class ConcentrationComponent implements OnInit {
   }
 
   getConcentrationHoldingsChart() {
-    return this.concentrationHoldingsService.concentrationHoldingsChart;
+    return this.concentrationHoldingsService.concentrationSectorsChart;
   }
 }
