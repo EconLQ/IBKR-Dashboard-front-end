@@ -25,7 +25,6 @@ export class AuthService {
         // remove token on succesfull (200) request
         localStorage.removeItem('token');
         console.log('Logged out...', response);
-        this.router.navigate(['/login']); // redirect to login
       },
       (error) => {
         console.log('Error with logged out response:', error);
