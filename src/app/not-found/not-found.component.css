@@ -1,0 +1,13 @@
+#main-container {
+  display: block;
+  position: relative;
+  height: auto;
+  color: aliceblue;
+  text-align: center;
+  border: 1px solid #fff;
+  border-radius: 20px;
+  width: 50vw;
+  top: 20vh;
+  margin: auto;
+  padding: 10px;
+}

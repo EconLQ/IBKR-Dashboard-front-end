@@ -8,6 +8,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { OpenedPositionsComponent } from './opened-positions/opened-positions.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirect to 'login' by default
+  { path: '**', component: NotFoundComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
