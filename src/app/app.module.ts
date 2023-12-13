@@ -34,6 +34,9 @@ import { AssetClassService } from './dashboard/tables/allocation/asset-class/ass
 import { PerformanceBySectorService } from './dashboard/tables/allocation/performance-by-sector/performance-by-sector.service';
 import { RegionService } from './dashboard/tables/allocation/region/region.service';
 import { ConcentrationHoldingsService } from './dashboard/tables/concentration/concentration-service';
+import { ClosePositionComponent } from './modals/close-position/close-position.component';
+import { OpenedPositionsComponent } from './opened-positions/opened-positions.component';
+import { AddToPositionComponent } from './modals/add-to-position/add-to-position.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +57,9 @@ import { ConcentrationHoldingsService } from './dashboard/tables/concentration/c
     RegionComponent,
     PerformanceBySectorComponent,
     TimePeriodBenchCompComponent,
+    ClosePositionComponent,
+    OpenedPositionsComponent,
+    AddToPositionComponent,
   ],
   imports: [
     BrowserModule,

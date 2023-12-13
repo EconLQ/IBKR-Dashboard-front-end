@@ -39,4 +39,18 @@ export class PositionService {
       `${this.apiServerUrl}/positions/${contractId}`
     );
   }
+
+  public closePosition(position: Position): Observable<void> {
+    return this.http.post<void>(
+      `${this.apiServerUrl}/positions/close`,
+      position
+    );
+  }
+
+  public addToPosition(position: Position): Observable<void> {
+    return this.http.post<void>(
+      `${this.apiServerUrl}/positions/add-to`,
+      position
+    );
+  }
 }

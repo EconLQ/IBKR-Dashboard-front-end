@@ -1,0 +1,61 @@
+<div class="modal-header">
+  <h1 class="modal-title fs-5" id="editModalLabel">
+    Close {{ position.ticker }} position
+  </h1>
+  <button
+    type="button"
+    class="btn-close"
+    (click)="activeModal.close()"
+  ></button>
+</div>
+<div class="modal-body">
+  <form
+    #closePositionForm="ngForm"
+    (ngSubmit)="closePosition(closePositionForm)"
+  >
+    <div class="mb-3">
+      <label for="ticker" class="col-form-label">Ticker:</label>
+      <input
+        type="text"
+        [ngModel]="position.ticker"
+        name="ticker"
+        class="form-control"
+        id="ticker"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="position" class="col-form-label">Position Size:*</label>
+      <input
+        type="text"
+        [ngModel]="position.position"
+        name="position"
+        class="form-control"
+        id="position"
+      />
+    </div>
+    <div id="note-text">
+      <p>
+        <i
+          >Note: If a position size is less than zero, than it'll be considered
+          as sell, while more than zero is a buy</i
+        >
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="activeModal.dismiss('Close')"
+      >
+        Close
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="activeModal.close()"
+      >
+        Update
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,5 +1,7 @@
 #main-container {
   margin: 0 10px;
+  width: auto;
+  display: block;
 }
 table {
   text-align: center;
