@@ -1,0 +1,61 @@
+<div class="modal-header">
+  <h1 class="modal-title fs-5" id="editModalLabel">
+    Do you want to add more to {{ position.ticker }}?
+  </h1>
+  <button
+    type="button"
+    class="btn-close"
+    (click)="activeModal.close()"
+  ></button>
+</div>
+<div class="modal-body">
+  <form
+    #addToPositionForm="ngForm"
+    (ngSubmit)="addToPosition(addToPositionForm)"
+  >
+    <div class="mb-3">
+      <label for="ticker" class="col-form-label">Ticker:</label>
+      <input
+        type="text"
+        [ngModel]="position.ticker"
+        name="ticker"
+        class="form-control"
+        id="ticker"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="position" class="col-form-label">Amount of contracts:*</label>
+      <input
+        type="text"
+        [ngModel]="position.position"
+        name="position"
+        class="form-control"
+        id="position"
+      />
+    </div>
+    <div id="note-text">
+      <p>
+        <i
+          >Note: the new market order will be submitted at the current price of
+          {{ position.ticker }}</i
+        >
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="activeModal.dismiss('Close')"
+      >
+        Close
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        (click)="activeModal.close()"
+      >
+        Update
+      </button>
+    </div>
+  </form>
+</div>
