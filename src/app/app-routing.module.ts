@@ -7,6 +7,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { OpenedPositionsComponent } from './opened-positions/opened-positions.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -14,6 +15,11 @@ const routes: Routes = [
   {
     path: 'positions',
     component: PositionsTableComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'opened-positions',
+    component: OpenedPositionsComponent,
     canActivate: [AuthGuard],
   },
   {
