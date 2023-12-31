@@ -10,22 +10,25 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { OpenedPositionsComponent } from './opened-positions/opened-positions.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'sign-up', component: SignupComponent },
+  { path: 'login', component: LoginComponent, title: 'Login' },
+  { path: 'sign-up', component: SignupComponent, title: 'Sign Up' },
   {
     path: 'positions',
     component: PositionsTableComponent,
     canActivate: [AuthGuard],
+    title: 'Positions',
   },
   {
     path: 'opened-positions',
     component: OpenedPositionsComponent,
     canActivate: [AuthGuard],
+    title: 'Portfolio',
   },
   {
     path: 'dashboard',
     component: DashboardComponent,
     canActivate: [AuthGuard],
+    title: 'Dashboard',
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirect to 'login' by default
 ];
