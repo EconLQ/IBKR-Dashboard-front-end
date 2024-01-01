@@ -1,7 +1,7 @@
 export interface Position {
   contractId: number;
   date: Object;
-  ticker: String;
+  ticker: string;
   position: number;
   unrealizedPnL: number;
   realizedPnL: number;

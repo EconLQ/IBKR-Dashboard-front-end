@@ -8,6 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ClosePositionComponent } from '../modals/close-position/close-position.component';
 import { RefreshTableModalComponent } from '../modals/refresh-table-modal/refresh-table-modal.component';
 import { AddToPositionComponent } from '../modals/add-to-position/add-to-position.component';
+import { CandlestickChartServiceService } from './candlestick-chart/candlestick-chart-service.service';
 
 @Component({
   selector: 'app-opened-positions',
@@ -15,6 +16,7 @@ import { AddToPositionComponent } from '../modals/add-to-position/add-to-positio
   styleUrl: './opened-positions.component.css',
 })
 export class OpenedPositionsComponent {
+  private twChartId: string = 'chart'; // TW chart id
   public positions: Position[] = [];
   public isPositionsRoute: boolean = false;
   applicationUrl = environment.applicationUrl;
@@ -24,7 +26,8 @@ export class OpenedPositionsComponent {
   constructor(
     private positionService: PositionService,
     private route: ActivatedRoute,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private candleStickChartService: CandlestickChartServiceService
   ) {}
 
   public open(modal: any): void {
@@ -36,14 +39,14 @@ export class OpenedPositionsComponent {
     this.route.url.subscribe((segments) => {
       this.isPositionsRoute = segments[0]?.path == 'positions';
     });
+    // TODO: think how to show the char for each graph
+    // obviously that positions array is empty because of getPositions() async nature
+    // this.candleStickChartService.getChartData('URA', 'URA');
   }
 
   public getPositions(): void {
     this.positionService.getPositions().subscribe(
       (response: Position[]) => {
-        // update positions from response
-        // this.positions = response;
-
         for (let position of response) {
           if (position.position != 0) {
             const date = position.date as any; // parse date object
@@ -111,5 +114,11 @@ export class OpenedPositionsComponent {
     if (result.length === 0 || !key) {
       this.getPositions();
     }
+  }
+  /**
+   * Builds tradingview chart
+   */
+  renderChart(ticker: string) {
+    this.candleStickChartService.getChartData(ticker, this.twChartId);
   }
 }
