@@ -14,12 +14,34 @@
     <p id="lastUpdate">Last update was on: {{ updateOn }}</p>
   </div>
 </div>
-
+<!-- List of tickers -->
+<div id="portfolio-container">
+  <div id="tickers">
+    <table
+      id="tickers-list"
+      class="table table-stripped-columns table-bordered table-hover"
+    >
+      <thead>
+        <tr>
+          <th>Portfolio Item</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let position of positions">
+          <td (click)="renderChart(position.ticker)">
+            {{ position.ticker }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="chart"></div>
+</div>
 <h3 id="position-title">Opened Positions</h3>
 <p id="position-subtitle">
   Shows all opened positons from your current portfolio
 </p>
-<div id="search-form">
+<!-- <div id="search-form">
   <form class="d-flex" role="search">
     <input
       class="form-control me-2"
@@ -32,7 +54,7 @@
       aria-label="Search"
     />
   </form>
-</div>
+</div> -->
 <div id="main-container">
   <table
     class="table table-dark table-stripped-columns table-bordered table-hover"
