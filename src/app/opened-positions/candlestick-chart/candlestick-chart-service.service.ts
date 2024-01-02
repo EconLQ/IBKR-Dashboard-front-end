@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 import { restClient } from '@polygon.io/client-js';
-import {
-  IChartApi,
-  ISeriesApi,
-  SeriesType,
-  createChart,
-} from 'lightweight-charts';
+import { IChartApi, ISeriesApi, createChart } from 'lightweight-charts';
 import { BarItem } from './bar-item';
 import { environment } from '../../../environments/environment.development';
 
@@ -16,8 +11,9 @@ export class CandlestickChartServiceService {
   private apiKey = environment.polygonApiKey;
   // TW chart attributes
   private chartOptions = {
-    width: 1200,
-    height: 500,
+    width: 0,
+    height: 0,
+    autoSize: true,
     timeScale: {
       timeVisible: true,
       secondsVisible: false,
@@ -44,6 +40,7 @@ export class CandlestickChartServiceService {
   private chartSeries: Map<IChartApi, ISeriesApi<'Candlestick'>> = new Map();
   constructor() {}
 
+  // TODO: add handler for the cases when there is no such ticker in PolygonIo
   public getChartData(ticker: string, chartId: string): void {
     const rest = restClient(this.apiKey); // connect to PolygonIo rest client
 
@@ -87,6 +84,7 @@ export class CandlestickChartServiceService {
         }
       })
       .catch((e) => {
+        // TODO: add handler for 429 error from PolygonIo API
         console.log('error happened fetching data:', e);
       });
   }
@@ -122,7 +120,7 @@ export class CandlestickChartServiceService {
 
   /**
    * Remove the existing chart's series to update the most recent series data
-   * @param data array of daily bars 
+   * @param data array of daily bars
    * @param chartId chart's container id
    */
   private reBuildChart(data: BarItem[], chartId: string) {

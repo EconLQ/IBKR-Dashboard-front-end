@@ -18,7 +18,7 @@
 <div id="portfolio-container">
   <div id="tickers">
     <table
-      id="tickers-list"
+      id="tickers-table"
       class="table table-stripped-columns table-bordered table-hover"
     >
       <thead>
@@ -28,7 +28,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let position of positions">
-          <td (click)="renderChart(position.ticker)">
+          <td (click)="renderChart(position.ticker)" id="tickers-row">
             {{ position.ticker }}
           </td>
         </tr>

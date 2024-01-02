@@ -34,14 +34,12 @@ export class OpenedPositionsComponent {
     this.modalService.open(modal);
   }
   ngOnInit(): void {
+    // fetch positions and create chart for the 1st positions from the result array
     this.getPositions();
     // subscribe to route changes
     this.route.url.subscribe((segments) => {
       this.isPositionsRoute = segments[0]?.path == 'positions';
     });
-    // TODO: think how to show the char for each graph
-    // obviously that positions array is empty because of getPositions() async nature
-    // this.candleStickChartService.getChartData('URA', 'URA');
   }
 
   public getPositions(): void {
@@ -63,6 +61,12 @@ export class OpenedPositionsComponent {
             this.positions.push(position);
           }
         }
+
+        // build chart for the 1st positino in the array on page startup
+        this.candleStickChartService.getChartData(
+          this.positions[0].ticker,
+          'chart'
+        );
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
