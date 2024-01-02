@@ -3,6 +3,9 @@ import { restClient } from '@polygon.io/client-js';
 import { IChartApi, ISeriesApi, createChart } from 'lightweight-charts';
 import { BarItem } from './bar-item';
 import { environment } from '../../../environments/environment.development';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ErrorModalComponent } from '../../modals/error-modal/error-modal.component';
+import { HttpEvent } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -38,9 +41,8 @@ export class CandlestickChartServiceService {
   } as const;
   private charts: Map<string, IChartApi> = new Map();
   private chartSeries: Map<IChartApi, ISeriesApi<'Candlestick'>> = new Map();
-  constructor() {}
+  constructor(private modalService: NgbModal) {}
 
-  // TODO: add handler for the cases when there is no such ticker in PolygonIo
   public getChartData(ticker: string, chartId: string): void {
     const rest = restClient(this.apiKey); // connect to PolygonIo rest client
 
@@ -80,11 +82,21 @@ export class CandlestickChartServiceService {
             this.buildChart(bars, chartId);
           }
         } else {
+          // catch error when there is no ticker found in Polygon.io JS-client
+          const modalRef = this.modalService.open(ErrorModalComponent);
+          modalRef.componentInstance.title = 'Ticker Not Found';
+          modalRef.componentInstance.message =
+            "Unfortunately, Polygon.io doesn't supply feed for such ticker";
+
           console.log('No results found for such query:', data.results);
         }
       })
       .catch((e) => {
-        // TODO: add handler for 429 error from PolygonIo API
+        // TODO: assure that caught error has 429 status code
+        const modalRef = this.modalService.open(ErrorModalComponent);
+        modalRef.componentInstance.title = 'Too Many Requests';
+        modalRef.componentInstance.message =
+          'Too many requests. Pelase wait for 1 minute to let API cooldown a bit';
         console.log('error happened fetching data:', e);
       });
   }
