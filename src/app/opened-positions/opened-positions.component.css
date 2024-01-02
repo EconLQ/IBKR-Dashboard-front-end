@@ -46,10 +46,29 @@ table {
   border: 1px solid gray;
   margin: 10px;
 }
-#tickers-list {
-  color: aliceblue;
+
+/* Styles of the tickers table to the left of the chart */
+#tickers {
+  width: -webkit-fill-available;
+  border: 3px solid gray;
+  width: 20% !important;
+  height: auto;
 }
 
+/* Resize Tradingview chart to make it responsive */
+#chart {
+  border: 3px solid gray;
+  width: 100%;
+  height: 55vh;
+}
+
+#tickers-table {
+  color: aliceblue;
+  margin-bottom: 0;
+}
+#tickers-row {
+  cursor: pointer;
+}
 #ticker {
   padding: 5px;
   color: aliceblue;
@@ -68,8 +87,4 @@ table {
 #tickers-title {
   font-style: normal;
   font-size: larger;
-}
-
-#chart {
-  border: 3px solid gray;
 }
