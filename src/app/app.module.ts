@@ -37,6 +37,7 @@ import { ConcentrationHoldingsService } from './dashboard/tables/concentration/c
 import { ClosePositionComponent } from './modals/close-position/close-position.component';
 import { OpenedPositionsComponent } from './opened-positions/opened-positions.component';
 import { AddToPositionComponent } from './modals/add-to-position/add-to-position.component';
+import { ErrorModalComponent } from './modals/error-modal/error-modal.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { AddToPositionComponent } from './modals/add-to-position/add-to-position
     ClosePositionComponent,
     OpenedPositionsComponent,
     AddToPositionComponent,
+    ErrorModalComponent,
   ],
   imports: [
     BrowserModule,
